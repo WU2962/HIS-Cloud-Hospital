@@ -199,6 +199,20 @@ his-vue/
   - 超级管理员：`18905621669` / `admin`
   - 其他用户默认密码：`123456`（如 华佗：`15305560455` / `123456`）
 
+### 局域网访问（同一网络内的其他设备）
+
+用于课堂演示/答辩，访客设备无需安装任何环境：
+
+1. 前端 API 地址已配置为自动跟随页面地址（`src/utils/axiosUtil.js` 中 `baseURL` 动态取 `window.location.hostname`），无需修改
+2. Windows 防火墙需放行 8081、8088 两个端口（管理员身份运行）：
+   ```bat
+   netsh advfirewall firewall add rule name="HIS-Hospital-8081" dir=in action=allow protocol=TCP localport=8081
+   netsh advfirewall firewall add rule name="HIS-Hospital-8088" dir=in action=allow protocol=TCP localport=8088
+   ```
+3. 命令行运行 `ipconfig` 查询本机局域网 IP
+4. 访客与本机连接同一网络（校园网/同一 WiFi），浏览器打开 `http://<你的IP>:8081` 即可
+5. 注意：换网络后 IP 会变化，访客需改用新 IP 访问，代码无需改动；若同一网络下仍无法互访，可能是路由器开启了 AP 隔离，可改用手机热点
+
 ## API接口说明
 
 ### 认证接口

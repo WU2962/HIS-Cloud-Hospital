@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { Loading, Message, MessageBox } from 'element-ui'
 import router from '@/router'
-axios.defaults.baseURL = 'http://127.0.0.1:8088'
+// 局域网访问：API 地址自动取打开页面时的主机地址（本机打开即 localhost，其他电脑打开即你电脑的局域网 IP），IP 变化无需再改
+axios.defaults.baseURL = 'http://' + window.location.hostname + ':8088'
 
 // 拦截请求，添加请求头
 axios.interceptors.request.use(config => {
